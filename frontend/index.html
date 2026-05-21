@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Task Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="page">
+        <h1>Personal Task Tracker</h1>
+
+        <section class="panel" aria-labelledby="create-task-heading">
+            <h2 id="create-task-heading">Create Task</h2>
+            <form id="task-form">
+                <label for="title">Title</label>
+                <input id="title" name="title" type="text" required>
+
+                <label for="description">Description</label>
+                <textarea id="description" name="description" rows="4"></textarea>
+
+                <label for="priority">Priority</label>
+                <select id="priority" name="priority">
+                    <option value="low">Low</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="high">High</option>
+                </select>
+
+                <button type="submit">Add Task</button>
+            </form>
+        </section>
+
+        <div id="message" class="message" role="status" aria-live="polite"></div>
+
+        <section class="panel" aria-labelledby="tasks-heading">
+            <h2 id="tasks-heading">Tasks</h2>
+            <div id="tasks-list" class="tasks-list"></div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
