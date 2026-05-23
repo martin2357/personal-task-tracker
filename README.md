@@ -1,9 +1,9 @@
 # Personal Task Tracker
 
-A simple FastAPI demo project for practicing the structure of a small backend API.
-The project includes a basic task tracker layout, a PostgreSQL database connection,
-Pydantic schemas, local pytest tests, and a GitHub Actions workflow that runs tests
-automatically.
+A simple FastAPI demo project for practicing a small task tracker app.
+The project has a FastAPI backend, a basic HTML/CSS/JavaScript frontend,
+a PostgreSQL database connection, Pydantic schemas, pytest tests, and GitHub
+Actions CI.
 
 ## Project structure
 
@@ -65,7 +65,7 @@ DATABASE_URL=postgresql+psycopg://user:password@localhost:5432/personal_task_tra
 
 Update the username, password, host, port, and database name for your local setup.
 
-## Run the app
+## Run the backend
 
 Start the FastAPI development server:
 
@@ -73,17 +73,52 @@ Start the FastAPI development server:
 uvicorn app.main:app --reload
 ```
 
-Then open:
+Useful backend URLs:
 
 ```text
 http://127.0.0.1:8000/docs
+http://127.0.0.1:8000/health
 ```
 
-## Run tests locally
+The backend does not currently define a root `/` endpoint, so
+`http://127.0.0.1:8000/` may return `404 Not Found`. Use `/docs`, `/health`, or
+the task endpoints instead.
+
+Available task API endpoints:
+
+```text
+GET    /tasks
+POST   /tasks
+GET    /tasks/{task_id}
+PATCH  /tasks/{task_id}
+DELETE /tasks/{task_id}
+```
+
+## Open the frontend
+
+Open `frontend/index.html` with Live Server.
+
+The frontend expects the backend to be running at:
+
+```text
+http://127.0.0.1:8000
+```
+
+It calls the backend task endpoints to load, create, update, and delete tasks.
+The backend CORS settings allow Live Server from:
+
+```text
+http://127.0.0.1:5500
+http://localhost:5500
+```
+
+## Run tests
 
 ```bash
 python -m pytest
 ```
+
+The current tests cover the Pydantic schemas.
 
 ## GitHub Actions CI
 
@@ -99,6 +134,7 @@ You can check the result in the repository's **Actions** tab on GitHub.
 - Organizing routers, schemas, models, database setup, and CRUD code
 - Reading configuration from environment variables
 - Connecting the app to PostgreSQL
+- Building a simple frontend that calls the API
 - Writing basic pytest tests
 - Running tests automatically with GitHub Actions
 
@@ -108,4 +144,4 @@ You can check the result in the repository's **Actions** tab on GitHub.
 - Add authentication
 - Add task filtering and pagination
 - Add better error handling
-- Add frontend build or deployment steps
+- Add deployment instructions
